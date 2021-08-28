@@ -55,10 +55,11 @@ exports.postBPS = async function(req, res, next){
             throw errorHandler({msg: "Missing required fields", statusCode: 400});
         };
 
-        const bpspermohonan = new BPS({bps: bps, resi: resi, permohonan: permohonan, status: status, npwp: npwp, nama: nama});
+        const bpsPermohonan = new BPS({bps: bps, resi: resi, permohonan: permohonan, status: status, npwp: npwp, nama: nama});
 
-
+        await bpsPermohonan(save);
         
+        return res.status(201).json(bpsPermohonan);
 
     } catch(err){
         console.log(err);

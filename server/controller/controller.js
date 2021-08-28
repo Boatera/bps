@@ -3,34 +3,65 @@ const errorHandler = require('../database/error');
 
 exports.getBPS = async function(req, res, next){
     try {
-        let cari;
-        const bps = req.params.bps;
-        const resi = req.params.resi;
+        //Selecton
+        if(!req.query){
+            throw errorHandler({msg: "Missing required fields", statusCode: 400});
+        };
+        const searchNomor = req.query.searchNomor;
+        const tipe = req.query.tipe;
 
-        if(!bps || !resi){
-            throw errorHandler({
-                msg: 'Missing required params',
-                statusCode: 400
-            });
+        //Check apakah ini mencari atau ngeload semua
+        if(req.query.searchNomor){
+            let bps;
+            //Validation
+            const tipe = typeof(tipe) === 'string' ? ['bps', 'resi'].indexOf(tipe) > -1 ?  tipe.trim() : false : false;
+
+            if(tipe === "bps"){
+                bps = await BPS.findOne({bps: searchNomor});
+            };
+
+            if(tipe === "resi"){
+                bps = await BPS.findOne({resi: searchNomor});
+            };
+
+            if(!bps){
+                return res.status(404).json({
+                    msg: "BPS Not Found"
+                });
+            };
+
+            return res.status(200).json(bps);
         };
-        if(bps){
-            cari = await BPS.getBPS({
-                resi: resi
-            });
-        } else {
-            cari = await BPS.getBPS({
-                resi: resi,
-                bps: bps
-            });
-        };
-        if(cari.length === 0){
-            return res.status(404).json({
-                msg: "Data Not Founf"
-            });
-        };
-        return res.status(200).json(cari);
     } catch(err){
         console.log('API Error:', err);
+        next(err);
+    };
+};
+
+exports.postBPS = async function(req, res, next){
+    try {
+        if(!req.body){
+            throw errorHandler({msg: "Missing required body", statusCode: 400});
+        };
+
+        const bps = req.body.bps;
+        const resi = req.body.resi;
+        const permohonan = req.body.permohonan;
+        const status = req.body.status;
+        const npwp = req.body.npwp;
+        const nama = req.body.nama;
+
+        if(!bps || !resi || !permohonan || !status || !npwp || !nama){
+            throw errorHandler({msg: "Missing required fields", statusCode: 400});
+        };
+
+        const bpspermohonan = new BPS({bps: bps, resi: resi, permohonan: permohonan, status: status, npwp: npwp, nama: nama});
+
+
+        
+
+    } catch(err){
+        console.log(err);
         next(err);
     };
 };

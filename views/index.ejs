@@ -1,5 +1,5 @@
 <%- include('include/header') %>
-<diV class="home">
+<div class="home">
 <%- include('include/show') %>
 <div class="home-section">
     <div class="text"><h1 class="display-3 fw-bold">
@@ -9,4 +9,17 @@
     <%- include('include/form') %>
 </div>
 </div>
+<%- include('include/loading') %>
+<script>
+  $( document ).ready(function() {
+    $("#hide").hide();
+});
+    $( "#nomor-btn" ).click(function() {
+    $("#hide").show();
+  	 setTimeout(function () {
+            $('#hide').hide();
+            $('#exampleModal').modal("show");
+        }, 2000);
+});
+</script>
 <%- include('include/footer') %>

@@ -5,10 +5,11 @@
           <thead>
             <tr>
               <th>Nomor BPS</th>
-              <th>Nama Wajib Pajak</th>
-              <th>NPWP</th>
+              <th>Nomor Resi</th>
               <th>Jenis Permohonan</th>
-              <th>Status Permohonan</th>
+              <th>NPWP</th>
+              <th>Nama Wajib Pajak</th>
+              <th>Status</th>
               <th></th>
               <th></th>
             </tr>
@@ -20,10 +21,46 @@
                 <td style="text-align: right;"></td>
                 <td style="text-align: right;"></td>
                 <td style="text-align: right;"></td>
+                <td style="text-align: right;"></td>
                 <td><button type="button" class="btn btn-success" id="pilih-btn">Ubah</button></td>
                 <td><button type="button" class="btn btn-danger" id="pilih-btn">Hapus</button></td>
               </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Nomor BPS" autocomplete="off">
+                </div>
+              </th>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Nomor Resi" autocomplete="off">
+                </div>
+              </th>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Jenis Permohonan" autocomplete="off">
+                </div>
+              </th>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="NPWP" autocomplete="off">
+                </div>
+              </th>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Nama Wajib Pajak" autocomplete="off">
+                </div>
+              </th>
+              <th>
+                <div class="form-group">
+                  <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Status" autocomplete="off">
+                </div>
+              </th>
+              <th colspan="2"><button type="button" class="btn btn-primary" id="pilih-btn">Tambah</button></th>
+            </tr>
+        </tfoot>
         </table>
       </div>
     </div>

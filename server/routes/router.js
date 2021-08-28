@@ -7,14 +7,9 @@ const services = require('../services/render');
  *  @description Root Route
  *  @method GET /
  */
-route.get('/', services.homeRoutes);
 
-route.get('/admin', services.adminRoutes);
+route.get('/cari', controller.getBPS);
 
-route.get('/masuk', services.loginRoutes)
-
-route.get('/api/cari', controller.find);
- 
-route.get('/api/cari', controller.get);
+route.get('/cari', controller.postBPS);
 
 module.exports = route

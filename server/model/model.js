@@ -13,7 +13,6 @@ var schema = new mongoose.Schema({
     permohonan : {
         type: String,
     },
-    
     npwp : {
         type: String,
     },
@@ -24,7 +23,4 @@ var schema = new mongoose.Schema({
         type: String,
     }
 })
-
-const Bpsdb = mongoose.model('bpsdb', schema);
-
-module.exports = Bpsdb;
+module.exports = mongoose.model('bps', schema);

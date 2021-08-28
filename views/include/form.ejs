@@ -1,14 +1,33 @@
-<div class="input">
-    <div class="form-group mb-3 col-md-4 input-margin">
-      <select class="form-select input-width" id="select-bps" aria-label="Default select example">
-        <option value="bps">Berdasarkan Nomor BPS</option>
-        <option value="resi">Berdasarkan Nomor Resi</option>
-      </select>
+<div class="input" id="input">
+    <div class="form-group button mb-3 input-margin">
+          <input type="radio" onclick="updateForm(this);" class="btn-check" name="cari" id="success-outlined" value="bps" autocomplete="off">
+          <label class="btn btn-outline-success" style="max-width: 30vw;" for="success-outlined">Berdasarkan Nomor BPS</label>
+          <input type="radio" onclick="updateForm(this);" class="btn-check" name="cari" id="danger-outlined" value="resi" autocomplete="off">
+          <label class="btn btn-outline-danger" style="max-width: 30vw;" for="danger-outlined">Berdasarkan Nomor Resi</label>
     </div>
       <div class="form-group mb-3 col-md-4 input-margin">
-        <input type="text input-width" class="form-control" value="" placeholder="Input Nomor">
+        <input type="text input-width" name="nomor" id="nomor-input" class="form-control" value="" placeholder="Contoh BPS: PEM-123456789/WPJ.21/KP.0603/2021" autocomplete="off">
       </div>
     <div class="button">
-    <button type="button" class="btn btn-primary mb-3" id="nomor-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Cari</button>
+    <button type="button" class="btn btn-primary mb-3" id="nomor-btn" data-toggle="modal" data-target="#exampleModal">Cari Status Permohonan</button>
     </div>
-</div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#nomor-btn').prop('disabled',true);
+    $('#nomor-input').keyup(function(){
+        $('#nomor-btn').prop('disabled', this.value == "" ? true : false);     
+    })
+});  
+
+function updateForm(control) {
+        if (control.id === "success-outlined") {
+            const modalBps = 'Cari Nomor BPS';
+            document.querySelector('.modal-title').textContent = modalBps;
+        } else {
+            const modalResi = 'Cari Nomor Resi';
+            document.querySelector('.modal-title').textContent = modalResi;
+        };
+    };
+
+  </script>
